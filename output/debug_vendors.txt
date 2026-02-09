@@ -1,0 +1,369 @@
+Extraction started at 2026-02-08T17:26:28.058797
+
+==================================================
+CARD #1: SAJJAN ENTERPRISES
+EXPANDED: True
+FULL TEXT:
+SAJJAN ENTERPRISES
+CONTACT
+dinesh bishnoi
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+dineshrohit2929[at]gmail[dot]com
+CONTACT NUMBER(S)
+7568911642
+TOTAL INSTALLED CAPACITY (kWp)
+9
+NO. OF INSTALLATIONS
+3
+==================================================
+
+==================================================
+CARD #2: SEERVI ENTERPRISES
+EXPANDED: True
+FULL TEXT:
+SEERVI ENTERPRISES
+NO. OF INSTALLATIONS
+1
+CONTACT
+Rakesh Seervi
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+seervienterprises143[at]gmail[dot]com
+CONTACT NUMBER(S)
+9928458143
+TOTAL INSTALLED CAPACITY (kWp)
+3
+NO. OF INSTALLATIONS
+1
+==================================================
+
+==================================================
+CARD #3: ZUNROOF TECH PVT LTD
+EXPANDED: True
+FULL TEXT:
+ZUNROOF TECH PVT LTD
+CONTACT
+Ashank Garg
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+gosolar[at]zunroof[dot]com
+CONTACT NUMBER(S)
+9205893368
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #4: ZEAL INDUSTRIES
+EXPANDED: True
+FULL TEXT:
+ZEAL INDUSTRIES
+CONTACT
+SHASHI GUPTA
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+sakshamagrawal63[at]gmail[dot]com
+CONTACT NUMBER(S)
+9887202495
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #5: Z.B. SOLAR ENERGY PRIVATE LIMITED
+EXPANDED: True
+FULL TEXT:
+Z.B. SOLAR ENERGY PRIVATE LIMITED
+CONTACT
+RASHMI CHUGH
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+zerobillsolarenergy[dot]pvt[dot]ltd[at]gmail[dot]com
+CONTACT NUMBER(S)
+9100920094
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #6: YUVRAJ ENGINEER & SERVICES PVT. LTD.
+EXPANDED: True
+FULL TEXT:
+YUVRAJ ENGINEER & SERVICES PVT. LTD.
+CONTACT
+HARSHVARDHAN SINGH RATHORE
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+harshvardhansinghrathore557[at]gmail[dot]com
+CONTACT NUMBER(S)
+8739930704
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #7: YUCON ENERGY PRIVATE LIMITED
+EXPANDED: True
+FULL TEXT:
+YUCON ENERGY PRIVATE LIMITED
+CONTACT
+Rajit Liddle
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+rajit[at]cleonpowertech[dot]in
+CONTACT NUMBER(S)
+7303297153
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #8: YATHARTH INFRATECH
+EXPANDED: True
+FULL TEXT:
+YATHARTH INFRATECH
+CONTACT
+Amit Kumar
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+yatharth[dot]infra21[at]gmail[dot]com
+CONTACT NUMBER(S)
+8290444200
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #9: YASH ENTERPRISES
+EXPANDED: True
+FULL TEXT:
+YASH ENTERPRISES
+CONTACT
+SANDEEP GODARA
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+sandeep19811[at]gmail[dot]com
+CONTACT NUMBER(S)
+9414347081
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #10: YASH ELECTRICAL AND BATTERY HOUSE
+EXPANDED: True
+FULL TEXT:
+YASH ELECTRICAL AND BATTERY HOUSE
+CONTACT
+Yash Pal yadav
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+yashsolarbattery[at]gmail[dot]com
+CONTACT NUMBER(S)
+9667391422
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #11: YADUVANSHI POWER
+EXPANDED: True
+FULL TEXT:
+YADUVANSHI POWER
+CONTACT
+Rambharos
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+yaduvanshiavedesh[at]gmail[dot]com
+CONTACT NUMBER(S)
+8452881087
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #12: XOLAR SUN ENERGY
+EXPANDED: True
+FULL TEXT:
+XOLAR SUN ENERGY
+CONTACT
+Neelima Rana
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+sales[at]xolarsunenergy[dot]co[dot]in
+CONTACT NUMBER(S)
+9521069909
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #13: VYOM VENTURE
+EXPANDED: True
+FULL TEXT:
+VYOM VENTURE
+CONTACT
+RAJESH KUMAR
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+VENTUREVYOM[at]GMAIL[dot]COM
+CONTACT NUMBER(S)
+9602564715
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #14: VSK ENTERPRISES
+EXPANDED: True
+FULL TEXT:
+VSK ENTERPRISES
+NO. OF INSTALLATIONS
+0
+CONTACT
+SHAILENDRA SINGH CHOUHAN
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+vsksolar[at]gmail[dot]com
+CONTACT NUMBER(S)
+6350571791
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #15: VSE SOLAR PRIVATE LIMITED
+EXPANDED: True
+FULL TEXT:
+VSE SOLAR PRIVATE LIMITED
+CONTACT
+Ramratan Sangwa
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+pmsgy[at]varshasolarelectric[dot]com
+CONTACT NUMBER(S)
+8112291460
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #16: VRINDAVAN GREEN ENERGY SERVICES
+EXPANDED: True
+FULL TEXT:
+VRINDAVAN GREEN ENERGY SERVICES
+BRAND NAME:
+WAAREE ENERGIES LIMITED
+CONTACT
+VIRENDRA SINGH
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+Virendrasingh[dot]rss97[at]gmail[dot]com
+CONTACT NUMBER(S)
+9602414585
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #17: VOLTTIC SOLAR LLP
+EXPANDED: True
+FULL TEXT:
+VOLTTIC SOLAR LLP
+NO. OF INSTALLATIONS
+0
+CONTACT
+Ankit Baliya
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+voltticsolar[at]gmail[dot]com
+CONTACT NUMBER(S)
+9602222298
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
+
+==================================================
+CARD #18: VK ENTERPRISES
+EXPANDED: True
+FULL TEXT:
+VK ENTERPRISES
+CONTACT
+jeetendra kumar jangid
+View
+Shortlist Vendor
+Select Vendor
+EMAIL(S)
+vkvishwakarmaskr[at]gmail[dot]com
+CONTACT NUMBER(S)
+7296959858
+TOTAL INSTALLED CAPACITY (kWp)
+0
+NO. OF INSTALLATIONS
+0
+==================================================
