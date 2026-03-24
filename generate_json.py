@@ -6,23 +6,30 @@ def read_csv_files(districts_folder):
     """Read all Maharashtra CSV files and return consolidated data."""
     all_vendors = []
     
-    for file in Path(districts_folder).glob("MAHARASHTRA_*.csv"):
-        district_name = file.stem.replace("MAHARASHTRA_", "").replace("_", " ")
+    for file in Path(districts_folder).glob("*.csv"):
+        # File format: STATE_District_Name.csv
+        parts = file.stem.split("_", 1)
+        state_name = parts[0] if len(parts) > 1 else "Unknown"
+        district_name = parts[1].replace("_", " ") if len(parts) > 1 else file.stem
+
         
         with open(file, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             for row in reader:
                 try:
-                    vendor = {
-                        'id': len(all_vendors) + 1,
-                        'district': district_name,
-                        'company': row.get('company_name', ''),
-                        'email': row.get('email', ''),
-                        'phone': row.get('phone', ''),
-                        'installations': int(row.get('installations', 0)),
-                        'capacity': float(row.get('capacity_kwp', 0))
-                    }
-                    all_vendors.append(vendor)
+                    installations = int(row.get('installations', 0))
+                    if installations > 10:
+                        vendor = {
+                            'id': len(all_vendors) + 1,
+                            'state': state_name,
+                            'district': district_name,
+                            'company': row.get('company_name', ''),
+                            'email': row.get('email', ''),
+                            'phone': row.get('phone', ''),
+                            'installations': installations,
+                            'capacity': float(row.get('capacity_kwp', 0))
+                        }
+                        all_vendors.append(vendor)
                 except (ValueError, KeyError):
                     continue
     
@@ -34,12 +41,14 @@ def main():
     
     vendors = read_csv_files(districts_folder)
     
-    # Get unique districts
+    # Get unique districts and states
     districts = sorted(set(v['district'] for v in vendors))
+    states = sorted(set(v['state'] for v in vendors))
     
     data = {
         'vendors': vendors,
         'districts': districts,
+        'states': states,
         'stats': {
             'total': len(vendors),
             'totalInstallations': sum(v['installations'] for v in vendors),

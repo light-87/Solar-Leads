@@ -825,9 +825,6 @@ class VendorScraper:
                         vendor["capacity_kwp"] = cap_match.group(1)
                     elif i + 1 < len(lines):
                         next_line_cap = re.search(r'(\d+(?:\.\d+)?)', lines[i+1])
-                        if next_line_cap:
-                            vendor["capacity_kwp"] = next_line_cap.group(1)
-            
             # Additional cleanup for company name if it's still empty
             if not vendor["company_name"] and len(lines) > 0:
                  vendor["company_name"] = lines[0]
@@ -1145,7 +1142,8 @@ class VendorScraper:
                         print(f"  🔒 Restricting to single state '{states[idx]}' because --district is specified.")
                         states = [states[idx]]
                     else:
-                        states = states[idx:]
+                        print(f"  🔒 Restricting to single state '{states[idx]}' as requested.")
+                        states = [states[idx]]
                 else:
                     print(f"  ❌ State '{self.start_state}' not found!")
                     return

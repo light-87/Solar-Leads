@@ -6,6 +6,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [district, setDistrict] = useState('')
+  const [stateFilter, setStateFilter] = useState('')
   const [minInstallations, setMinInstallations] = useState(0)
   const [maxInstallations, setMaxInstallations] = useState(10000)
   const [activeTiers, setActiveTiers] = useState(['elite', 'high', 'medium', 'standard', 'emerging'])
@@ -53,6 +54,7 @@ function App() {
       const tier = getTier(v.installations)
       if (!activeTiers.includes(tier)) return false
       if (search && !v.company.toLowerCase().includes(search.toLowerCase())) return false
+      if (stateFilter && v.state !== stateFilter) return false
       if (district && v.district !== district) return false
       if (v.installations < minInstallations || v.installations > maxInstallations) return false
       return true
@@ -71,7 +73,7 @@ function App() {
     })
 
     return result
-  }, [data.vendors, search, district, minInstallations, maxInstallations, activeTiers, sortConfig])
+  }, [data.vendors, search, stateFilter, district, minInstallations, maxInstallations, activeTiers, sortConfig])
 
   // Toggle tier filter
   const toggleTier = (tier) => {
@@ -110,9 +112,9 @@ function App() {
 
   // Copy to clipboard
   const copyToClipboard = (vendors) => {
-    const header = 'Company\tDistrict\tInstallations\tCapacity (kWp)\tEmail\tPhone'
+    const header = 'Company\tState\tDistrict\tInstallations\tCapacity (kWp)\tEmail\tPhone'
     const rows = vendors.map(v => 
-      `${v.company}\t${v.district}\t${v.installations}\t${v.capacity}\t${v.email}\t${v.phone}`
+      `${v.company}\t${v.state}\t${v.district}\t${v.installations}\t${v.capacity}\t${v.email}\t${v.phone}`
     )
     const text = [header, ...rows].join('\n')
     navigator.clipboard.writeText(text)
@@ -134,9 +136,9 @@ function App() {
 
   // Export to CSV
   const exportCSV = () => {
-    const header = 'Company,District,Installations,Capacity (kWp),Email,Phone'
+    const header = 'Company,State,District,Installations,Capacity (kWp),Email,Phone'
     const rows = filteredVendors.map(v => 
-      `"${v.company}","${v.district}",${v.installations},${v.capacity},"${v.email}","${v.phone}"`
+      `"${v.company}","${v.state}","${v.district}",${v.installations},${v.capacity},"${v.email}","${v.phone}"`
     )
     const csv = [header, ...rows].join('\n')
     const blob = new Blob([csv], { type: 'text/csv' })
@@ -155,6 +157,7 @@ function App() {
 
   const resetFilters = () => {
     setSearch('')
+    setStateFilter('')
     setDistrict('')
     setMinInstallations(0)
     setMaxInstallations(10000)
@@ -175,7 +178,7 @@ function App() {
   return (
     <>
       <header className="app-header">
-        <h1>☀️ Maharashtra Solar Vendors</h1>
+        <h1>☀️ Solar Vendors Directory</h1>
         <p>Filter, sort, and copy vendor data for outreach</p>
       </header>
 
@@ -193,10 +196,22 @@ function App() {
           </div>
 
           <div className="filter-group">
+            <label>State</label>
+            <select value={stateFilter} onChange={(e) => setStateFilter(e.target.value)}>
+              <option value="">All States</option>
+              {data.states?.map(s => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-group">
             <label>District</label>
             <select value={district} onChange={(e) => setDistrict(e.target.value)}>
               <option value="">All Districts</option>
-              {data.districts.map(d => (
+              {data.districts
+                .filter(d => !stateFilter || data.vendors.find(v => v.district === d && v.state === stateFilter))
+                .map(d => (
                 <option key={d} value={d}>{d}</option>
               ))}
             </select>
@@ -290,6 +305,9 @@ function App() {
                 <th onClick={() => handleSort('company')}>
                   Company {sortConfig.key === 'company' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : ''}
                 </th>
+                <th onClick={() => handleSort('state')}>
+                  State {sortConfig.key === 'state' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : ''}
+                </th>
                 <th onClick={() => handleSort('district')}>
                   District {sortConfig.key === 'district' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : ''}
                 </th>
@@ -317,6 +335,7 @@ function App() {
                       />
                     </td>
                     <td><strong>{vendor.company}</strong></td>
+                    <td>{vendor.state}</td>
                     <td>{vendor.district}</td>
                     <td><span className={`tier-badge ${tier}`}>{tier}</span></td>
                     <td><strong>{vendor.installations.toLocaleString()}</strong></td>
