@@ -41,6 +41,18 @@ function PinGate({ onUnlock }) {
 
 function App() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('authed') === '1')
+
+  if (!authed) {
+    return <PinGate onUnlock={() => setAuthed(true)} />
+  }
+
+  return <Directory onLogout={() => {
+    sessionStorage.removeItem('authed')
+    setAuthed(false)
+  }} />
+}
+
+function Directory({ onLogout }) {
   const [data, setData] = useState({ vendors: [], districts: [], stats: {} })
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -53,7 +65,6 @@ function App() {
 
   // Load data
   useEffect(() => {
-    if (!authed) return
     fetch('/vendors.json')
       .then(res => res.json())
       .then(d => {
@@ -64,16 +75,7 @@ function App() {
         console.error('Error loading data:', err)
         setLoading(false)
       })
-  }, [authed])
-
-  const logout = () => {
-    sessionStorage.removeItem('authed')
-    setAuthed(false)
-  }
-
-  if (!authed) {
-    return <PinGate onUnlock={() => setAuthed(true)} />
-  }
+  }, [])
 
   // Get tier from installations
   const getTier = (installations) => {
@@ -162,7 +164,7 @@ function App() {
   return (
     <>
       <header className="app-header">
-        <button className="logout-btn" onClick={logout}>Lock</button>
+        <button className="logout-btn" onClick={onLogout}>Lock</button>
         <h1>☀️ Solar Vendors Directory</h1>
         <p>Filter and sort vendor data</p>
       </header>
