@@ -10,9 +10,7 @@ function App() {
   const [minInstallations, setMinInstallations] = useState(0)
   const [maxInstallations, setMaxInstallations] = useState(10000)
   const [activeTiers, setActiveTiers] = useState(['elite', 'high', 'medium', 'standard', 'emerging'])
-  const [selected, setSelected] = useState(new Set())
   const [sortConfig, setSortConfig] = useState({ key: 'installations', direction: 'desc' })
-  const [toast, setToast] = useState('')
 
   // Load data
   useEffect(() => {
@@ -92,69 +90,6 @@ function App() {
     }))
   }
 
-  // Selection handlers
-  const toggleSelect = (id) => {
-    setSelected(prev => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-  }
-
-  const selectAll = () => {
-    if (selected.size === filteredVendors.length) {
-      setSelected(new Set())
-    } else {
-      setSelected(new Set(filteredVendors.map(v => v.id)))
-    }
-  }
-
-  // Copy to clipboard
-  const copyToClipboard = (vendors) => {
-    const header = 'Company\tState\tDistrict\tInstallations\tCapacity (kWp)\tEmail\tPhone'
-    const rows = vendors.map(v => 
-      `${v.company}\t${v.state}\t${v.district}\t${v.installations}\t${v.capacity}\t${v.email}\t${v.phone}`
-    )
-    const text = [header, ...rows].join('\n')
-    navigator.clipboard.writeText(text)
-    showToast(`Copied ${vendors.length} vendors to clipboard!`)
-  }
-
-  const copySelected = () => {
-    const vendors = filteredVendors.filter(v => selected.has(v.id))
-    if (vendors.length === 0) {
-      showToast('No vendors selected')
-      return
-    }
-    copyToClipboard(vendors)
-  }
-
-  const copyAll = () => {
-    copyToClipboard(filteredVendors)
-  }
-
-  // Export to CSV
-  const exportCSV = () => {
-    const header = 'Company,State,District,Installations,Capacity (kWp),Email,Phone'
-    const rows = filteredVendors.map(v => 
-      `"${v.company}","${v.state}","${v.district}",${v.installations},${v.capacity},"${v.email}","${v.phone}"`
-    )
-    const csv = [header, ...rows].join('\n')
-    const blob = new Blob([csv], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'vendors.csv'
-    a.click()
-    showToast('Downloaded vendors.csv')
-  }
-
-  const showToast = (message) => {
-    setToast(message)
-    setTimeout(() => setToast(''), 3000)
-  }
-
   const resetFilters = () => {
     setSearch('')
     setStateFilter('')
@@ -179,7 +114,7 @@ function App() {
     <>
       <header className="app-header">
         <h1>☀️ Solar Vendors Directory</h1>
-        <p>Filter, sort, and copy vendor data for outreach</p>
+        <p>Filter and sort vendor data</p>
       </header>
 
       {/* Filters */}
@@ -254,15 +189,6 @@ function App() {
         </div>
 
         <div className="action-buttons">
-          <button className="btn btn-primary" onClick={copySelected}>
-            📋 Copy Selected ({selected.size})
-          </button>
-          <button className="btn btn-primary" onClick={copyAll}>
-            📋 Copy All ({filteredVendors.length})
-          </button>
-          <button className="btn btn-secondary" onClick={exportCSV}>
-            📥 Download CSV
-          </button>
           <button className="btn btn-secondary" onClick={resetFilters}>
             🔄 Reset Filters
           </button>
@@ -283,10 +209,6 @@ function App() {
           <span className="stat-value">{Math.round(filteredStats.capacity).toLocaleString()}</span>
           <span className="stat-label">Capacity (kWp)</span>
         </div>
-        <div className="stat-item">
-          <span className="stat-value">{selected.size}</span>
-          <span className="stat-label">Selected</span>
-        </div>
       </div>
 
       {/* Table */}
@@ -295,13 +217,6 @@ function App() {
           <table>
             <thead>
               <tr>
-                <th>
-                  <input 
-                    type="checkbox" 
-                    checked={selected.size === filteredVendors.length && filteredVendors.length > 0}
-                    onChange={selectAll}
-                  />
-                </th>
                 <th onClick={() => handleSort('company')}>
                   Company {sortConfig.key === 'company' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : ''}
                 </th>
@@ -326,14 +241,7 @@ function App() {
               {filteredVendors.map(vendor => {
                 const tier = getTier(vendor.installations)
                 return (
-                  <tr key={vendor.id} className={selected.has(vendor.id) ? 'selected' : ''}>
-                    <td>
-                      <input 
-                        type="checkbox"
-                        checked={selected.has(vendor.id)}
-                        onChange={() => toggleSelect(vendor.id)}
-                      />
-                    </td>
+                  <tr key={vendor.id}>
                     <td><strong>{vendor.company}</strong></td>
                     <td>{vendor.state}</td>
                     <td>{vendor.district}</td>
@@ -349,9 +257,6 @@ function App() {
           </table>
         </div>
       </div>
-
-      {/* Toast */}
-      {toast && <div className="copy-toast">{toast}</div>}
     </>
   )
 }
