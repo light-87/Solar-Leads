@@ -39,6 +39,89 @@ body {
 .app-header {
   text-align: center;
   margin-bottom: 2rem;
+  position: relative;
+}
+
+.logout-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0.4rem 0.8rem;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* PIN gate */
+.pin-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pin-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.pin-card h1 {
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pin-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.pin-card input {
+  padding: 0.8rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  letter-spacing: 0.3rem;
+  text-align: center;
+}
+
+.pin-card input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+.pin-card input.error {
+  border-color: #ef4444;
+}
+
+.pin-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+}
+
+.pin-card .btn {
+  justify-content: center;
 }
 
 .app-header h1 {

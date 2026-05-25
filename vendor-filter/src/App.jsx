@@ -1,7 +1,46 @@
 import { useState, useEffect, useMemo } from 'react'
 import './App.css'
 
+const ADMIN_PIN = import.meta.env.VITE_ADMIN_PIN
+
+function PinGate({ onUnlock }) {
+  const [pin, setPin] = useState('')
+  const [error, setError] = useState(false)
+
+  const submit = (e) => {
+    e.preventDefault()
+    if (pin === ADMIN_PIN) {
+      sessionStorage.setItem('authed', '1')
+      onUnlock()
+    } else {
+      setError(true)
+      setPin('')
+    }
+  }
+
+  return (
+    <div className="pin-gate">
+      <form className="pin-card" onSubmit={submit}>
+        <h1>☀️ Solar Vendors</h1>
+        <p>Enter PIN to continue</p>
+        <input
+          type="password"
+          inputMode="numeric"
+          autoFocus
+          value={pin}
+          onChange={(e) => { setPin(e.target.value); setError(false) }}
+          className={error ? 'error' : ''}
+          placeholder="••••••••"
+        />
+        {error && <div className="pin-error">Incorrect PIN</div>}
+        <button type="submit" className="btn btn-primary">Unlock</button>
+      </form>
+    </div>
+  )
+}
+
 function App() {
+  const [authed, setAuthed] = useState(() => sessionStorage.getItem('authed') === '1')
   const [data, setData] = useState({ vendors: [], districts: [], stats: {} })
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -14,6 +53,7 @@ function App() {
 
   // Load data
   useEffect(() => {
+    if (!authed) return
     fetch('/vendors.json')
       .then(res => res.json())
       .then(d => {
@@ -24,7 +64,16 @@ function App() {
         console.error('Error loading data:', err)
         setLoading(false)
       })
-  }, [])
+  }, [authed])
+
+  const logout = () => {
+    sessionStorage.removeItem('authed')
+    setAuthed(false)
+  }
+
+  if (!authed) {
+    return <PinGate onUnlock={() => setAuthed(true)} />
+  }
 
   // Get tier from installations
   const getTier = (installations) => {
@@ -113,6 +162,7 @@ function App() {
   return (
     <>
       <header className="app-header">
+        <button className="logout-btn" onClick={logout}>Lock</button>
         <h1>☀️ Solar Vendors Directory</h1>
         <p>Filter and sort vendor data</p>
       </header>
