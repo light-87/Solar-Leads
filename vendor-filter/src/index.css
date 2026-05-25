@@ -206,6 +206,11 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .table-header {

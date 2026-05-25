@@ -212,7 +212,13 @@ function App() {
       </div>
 
       {/* Table */}
-      <div className="table-container">
+      <div
+        className="table-container"
+        onCopy={(e) => e.preventDefault()}
+        onCut={(e) => e.preventDefault()}
+        onContextMenu={(e) => e.preventDefault()}
+        onDragStart={(e) => e.preventDefault()}
+      >
         <div className="table-wrapper">
           <table>
             <thead>
