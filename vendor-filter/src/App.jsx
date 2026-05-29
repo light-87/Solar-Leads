@@ -3,6 +3,24 @@ import './App.css'
 
 const ADMIN_PIN = import.meta.env.VITE_ADMIN_PIN
 
+// Master switch for the data backend ("database").
+// Set to false to take the site offline: after login, everyone sees the
+// "database lost connection" message instead of the main directory.
+// Flip back to true to bring the site back up.
+const DATABASE_ONLINE = false
+
+function ConnectionLost() {
+  return (
+    <div className="db-error-gate">
+      <div className="db-error-card">
+        <span className="db-error-icon">⚠️</span>
+        <h1>Database connection lost</h1>
+        <p>We can't reach the database right now. Please contact the superadmin.</p>
+      </div>
+    </div>
+  )
+}
+
 function PinGate({ onUnlock }) {
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
@@ -54,7 +72,8 @@ function App() {
 
 function Directory({ onLogout }) {
   const [data, setData] = useState({ vendors: [], districts: [], stats: {} })
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(DATABASE_ONLINE)
+  const [loadError, setLoadError] = useState(!DATABASE_ONLINE)
   const [search, setSearch] = useState('')
   const [district, setDistrict] = useState('')
   const [stateFilter, setStateFilter] = useState('')
@@ -65,14 +84,21 @@ function Directory({ onLogout }) {
 
   // Load data
   useEffect(() => {
+    // Backend disabled — skip loading and show the connection error instead.
+    if (!DATABASE_ONLINE) return
+
     fetch('/vendors.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Request failed with status ${res.status}`)
+        return res.json()
+      })
       .then(d => {
         setData(d)
         setLoading(false)
       })
       .catch(err => {
         console.error('Error loading data:', err)
+        setLoadError(true)
         setLoading(false)
       })
   }, [])
@@ -156,6 +182,10 @@ function Directory({ onLogout }) {
     installations: filteredVendors.reduce((sum, v) => sum + v.installations, 0),
     capacity: filteredVendors.reduce((sum, v) => sum + v.capacity, 0)
   }), [filteredVendors])
+
+  if (loadError) {
+    return <ConnectionLost />
+  }
 
   if (loading) {
     return <div style={{ textAlign: 'center', padding: '4rem' }}>Loading vendors...</div>
