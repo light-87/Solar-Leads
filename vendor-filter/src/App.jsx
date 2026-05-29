@@ -3,11 +3,13 @@ import './App.css'
 
 const ADMIN_PIN = import.meta.env.VITE_ADMIN_PIN
 
-// Master switch for the data backend ("database").
-// Set to false to take the site offline: after login, everyone sees the
-// "database lost connection" message instead of the main directory.
-// Flip back to true to bring the site back up.
-const DATABASE_ONLINE = false
+// Master switch for the data backend ("database"), controlled by an env var
+// so the superadmin can take the site offline / bring it back without code
+// changes (set the var, then rebuild & redeploy).
+//   - unset / anything but "true"  => site OFFLINE: after login everyone sees
+//                                     the "database lost connection" message.
+//   - "true"                       => site ONLINE: the directory loads.
+const DATABASE_ONLINE = import.meta.env.VITE_DATABASE_ONLINE === 'true'
 
 function ConnectionLost() {
   return (
